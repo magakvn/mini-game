@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Бегущий квадрат</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="gameCanvas"></canvas>
+
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Установим размеры под экран устройства
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let x = 50;
+    let y = canvas.height / 2 - 25;
+    let dx = 4;
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Рисуем квадрат
+        ctx.fillStyle = '#3498db';
+        ctx.fillRect(x, y, 50, 50);
+
+        x += dx;
+        if (x > canvas.width) {
+            x = -50; // Снова появляется слева
+        }
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+</script>
+</body>
+</html>
